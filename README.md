@@ -1,8 +1,67 @@
-# apiman-gateway
+# Apiman Gateway Docker image
 The gateway component of the [Apiman](http://www.apiman.io/) - Open Source API Management project. This image was build as described in the [official documentation](http://www.apiman.io/latest/production-guide.html).
 
+## What is [Apiman](http://www.apiman.io/)?
 From Apiman website:
-> The apiman project brings an open source development methodology to API Management, coupling a rich API design & configuration layer with a blazingly fast runtime.
+> The apiman project brings an open source development methodology to API Management, 
+> coupling a rich API design & configuration layer with a blazingly fast runtime.
+> Features:
+>  - **Govern Your APIs** - Flexible, policy-based runtime governance for your APIs. Offer the same API through multiple plans, allowing different levels of service to different API consumers.
+>  - **Rich Management Layer** - Use the rich management layer (REST API and separate UI) to manage/configure not only APIs but also the client applications that consume them.
+>  - **Easily Embeddable** - Embed the API Management Policy Engine in any application - it has a small footprint and can be completely independent from the management layer.
+>  - **Fully Asynchronous** - The runtime engine's API is fully asynchronous and is designed to run equally well in both a standard Java EE environment and newer async runtimes like Vert.x.
 
 The Apiman project is composed of two main components. A **gateway** and 
-a **manager**.
+a **manager** and their dependencies.
+
+In order to run this image you will need the following prerequisites:
+ - Elasticsearch ```5.x``` 
+ - Keycloak ```6.x``` - To prepare the keycloak server please import the **apiman**
+ realm file into your server.
+
+## How to use this image
+Because there is a lot of stuff to configure in order to run the apiman gateway image, I find that the easiest way is via docker-compose. Example:
+```yml
+version: '3'
+services:
+  apiman-gateway:
+    image: "bogdanmic/apiman-gateway:latest"
+    container_name: apiman-gateway
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "5"
+    environment:
+      APIMAN_ES_PROTOCOL: http
+      APIMAN_ES_HOST: localhost
+      APIMAN_ES_PORT: 9200
+      APIMAN_GATEWAY_PUBLIC_ENDPOINT: http://apiman-gateway.host:8080/apiman-gateway/
+      APIMAN_AUTH_PUBLIC_KEY: "APIMAN_REALM_PUBLIC_KEY"
+      APIMAN_AUTH_SERVER_URL: http://keycoak.host:8080/auth
+      APIMAN_AUTH_GATEWAY_SECRET: keycloak-apiman-gateway-secret
+    ports:
+      - "9990:9990"
+      - "9993:9993"
+      - "8080:8080"
+      - "8443:8443"
+```
+Don't forget to adjust the **environment variables** according to your setup.
+
+### Environment Variables
+In order to run this image you will need **elasticsearch 5.x** and **keycloak 6.x**.
+You can configure these using the following environment variables:
+
+#### ```APIMAN_ES_PROTOCOL```
+The protocol used to communicate with the elasticsearch service: ```http```
+#### ```APIMAN_ES_HOST```
+The host of the elasticsearch service.
+#### ```APIMAN_ES_PORT```
+The port used to communiciate with the elasticsearch service.
+#### ```APIMAN_GATEWAY_PUBLIC_ENDPOINT```
+#### ```APIMAN_AUTH_PUBLIC_KEY```
+The public key for the apiman realm from keycloak that will be used for security.
+#### ```APIMAN_AUTH_SERVER_URL```
+The host where the gateway can find the keycloak server.
+#### ```APIMAN_AUTH_GATEWAY_SECRET```
+The  gateway secret used for authentication by the gateway with the keycloak server.
