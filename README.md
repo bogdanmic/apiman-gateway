@@ -51,17 +51,10 @@ Don't forget to adjust the **environment variables** according to your setup.
 ### Environment Variables
 In order to run this image you will need **elasticsearch 5.x** and **keycloak 6.x**.
 You can configure these using the following environment variables:
-
-#### ```APIMAN_ES_PROTOCOL```
-The protocol used to communicate with the elasticsearch service: ```http```
-#### ```APIMAN_ES_HOST```
-The host of the elasticsearch service.
-#### ```APIMAN_ES_PORT```
-The port used to communiciate with the elasticsearch service.
-#### ```APIMAN_GATEWAY_PUBLIC_ENDPOINT```
-#### ```APIMAN_AUTH_PUBLIC_KEY```
-The public key for the apiman realm from keycloak that will be used for security.
-#### ```APIMAN_AUTH_SERVER_URL```
-The host where the gateway can find the keycloak server.
-#### ```APIMAN_AUTH_GATEWAY_SECRET```
-The  gateway secret used for authentication by the gateway with the keycloak server.
+ - ```APIMAN_ES_PROTOCOL`` - The protocol used to communicate with the elasticsearch service.
+ - ```APIMAN_ES_HOST``` - The host of the elasticsearch service.
+ - ```APIMAN_ES_PORT``` - The port used to communiciate with the elasticsearch service.
+ - ```APIMAN_GATEWAY_PUBLIC_ENDPOINT``` - 
+ - ```APIMAN_AUTH_PUBLIC_KEY``` - The public key for the apiman realm from keycloak that will be used for security.
+ - ```APIMAN_AUTH_SERVER_URL``` - The host where the gateway can find the keycloak server.
+ - ```APIMAN_AUTH_GATEWAY_SECRET``` - The  gateway secret used for authentication by the gateway with the keycloak server.
