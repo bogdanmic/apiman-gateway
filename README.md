@@ -51,7 +51,7 @@ Don't forget to adjust the **environment variables** according to your setup.
 ### Environment Variables
 In order to run this image you will need **elasticsearch 5.x** and **keycloak 6.x**.
 You can configure these using the following environment variables:
- - ```APIMAN_ES_PROTOCOL`` - The protocol used to communicate with the elasticsearch service.
+ - ```APIMAN_ES_PROTOCOL``` - The protocol used to communicate with the elasticsearch service.
  - ```APIMAN_ES_HOST``` - The host of the elasticsearch service.
  - ```APIMAN_ES_PORT``` - The port used to communiciate with the elasticsearch service.
  - ```APIMAN_GATEWAY_PUBLIC_ENDPOINT``` - 
