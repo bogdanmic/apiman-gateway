@@ -17,7 +17,12 @@ a **manager** and their dependencies.
 In order to run this image you will need the following prerequisites:
  - Elasticsearch ```5.x``` 
  - Keycloak ```6.x``` - To prepare the keycloak server please import the **apiman**
- realm file into your server.
+ realm file into your server ([apiman-realm-export.json](apiman-realm-export.json)). 
+ After importing the apiman realm, don't forget to regenerate the secret for the
+ **apiman** and **apiman-gateway-api** clients. And if you are there, maybe also change the passwords
+ for the **admin** and **apimanager** users. The password is *admin123!* for both. Also make sure that the
+ proper domains are configured for your clients. For more information on how to configure keycloak, you should check
+ [the official documentation](https://www.keycloak.org/documentation.html).
 
 ## How to use this image
 Because there is a lot of stuff to configure in order to run the apiman gateway image, I find that the easiest way is via docker-compose. Example:
