@@ -1,5 +1,6 @@
-# Apiman Gateway Docker image
-The gateway component of the [Apiman](http://www.apiman.io/) - Open Source API Management project. This image was build as described in the [official documentation](http://www.apiman.io/latest/production-guide.html).
+# Apiman Gateway Docker image - on WildFly11
+The gateway component of the [Apiman](http://www.apiman.io/) - Open Source API Management project. 
+This image was build as described in the [official documentation](http://www.apiman.io/latest/production-guide.html).
 
 ## What is [Apiman](http://www.apiman.io/)?
 From Apiman website:
