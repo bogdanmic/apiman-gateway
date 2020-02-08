@@ -4,12 +4,11 @@ FROM jboss/wildfly:11.0.0.Final
 
 MAINTAINER Bogdan Mic <mic.bogdan@gmail.com>
 
-ENV APIMAN_VERSION 1.5.1.Final
+ENV APIMAN_VERSION 1.5.5.Final
 
 RUN cd $HOME/wildfly \
-    && curl https://downloads.jboss.org/apiman/$APIMAN_VERSION/apiman-distro-wildfly11-$APIMAN_VERSION-overlay.zip | bsdtar -xvf-
-
-RUN rm -rf $HOME/wildfly/standalone/deployments/apiman-ds.xml \
+    && curl https://downloads.jboss.org/apiman/$APIMAN_VERSION/apiman-distro-wildfly11-$APIMAN_VERSION-overlay.zip | bsdtar -xvf- \
+    && rm -rf $HOME/wildfly/standalone/deployments/apiman-ds.xml \
     && rm -rf $HOME/wildfly/standalone/deployments/apiman-es.war \
     && rm -rf $HOME/wildfly/standalone/deployments/apiman.war \
     && rm -rf $HOME/wildfly/standalone/deployments/apimanui.war
@@ -26,4 +25,4 @@ RUN chown -R jboss:0 ${JBOSS_HOME} \
 USER jboss
 
 # Set the default command to run on boot
-ENTRYPOINT ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0", "-c", "standalone-apiman-custom.xml"]
+ENTRYPOINT ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0", "-c", "standalone-apiman-custom.xml"]`
